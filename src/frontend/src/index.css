@@ -1,0 +1,329 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "PlayfairDisplay";
+  src: url("/assets/fonts/PlayfairDisplay.woff2") format("woff2");
+  font-weight: 400 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Parisienne";
+  src: url("/assets/fonts/Parisienne.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.625rem;
+
+    /* Wine/maroon tones */
+    --wine-deep: 0.22 0.12 15;
+    --wine-mid: 0.28 0.14 15;
+    --wine-light: 0.38 0.12 15;
+
+    /* Cream/canvas */
+    --cream-bg: 0.96 0.025 80;
+    --cream-card: 0.98 0.018 85;
+    --cream-warm: 0.94 0.03 80;
+
+    /* Gold accent */
+    --gold: 0.78 0.12 80;
+    --gold-light: 0.88 0.1 85;
+    --gold-dark: 0.65 0.14 75;
+
+    /* Rose/pink */
+    --rose-glow: 0.82 0.12 10;
+    --rose-deep: 0.55 0.18 12;
+
+    /* Brown text */
+    --brown-text: 0.22 0.06 20;
+    --brown-muted: 0.45 0.05 20;
+
+    --background: var(--cream-bg);
+    --foreground: var(--brown-text);
+    --card: var(--cream-card);
+    --card-foreground: var(--brown-text);
+    --popover: var(--cream-card);
+    --popover-foreground: var(--brown-text);
+    --primary: var(--wine-deep);
+    --primary-foreground: 0.96 0.02 80;
+    --secondary: var(--cream-warm);
+    --secondary-foreground: var(--brown-text);
+    --muted: 0.92 0.02 80;
+    --muted-foreground: var(--brown-muted);
+    --accent: var(--gold);
+    --accent-foreground: var(--wine-deep);
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+    --border: 0.88 0.03 80;
+    --input: 0.9 0.02 80;
+    --ring: var(--gold);
+    --chart-1: 0.646 0.222 41.116;
+    --chart-2: 0.6 0.118 184.704;
+    --chart-3: 0.398 0.07 227.392;
+    --chart-4: 0.828 0.189 84.429;
+    --chart-5: 0.769 0.188 70.08;
+    --sidebar: 0.985 0 0;
+    --sidebar-foreground: 0.145 0 0;
+    --sidebar-primary: 0.205 0 0;
+    --sidebar-primary-foreground: 0.985 0 0;
+    --sidebar-accent: 0.97 0 0;
+    --sidebar-accent-foreground: 0.205 0 0;
+    --sidebar-border: 0.922 0 0;
+    --sidebar-ring: 0.708 0 0;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Noto Sans Devanagari", serif;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  html {
+    height: 100%;
+    width: 100%;
+  }
+
+  #root {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+  }
+}
+
+/* Urdu/RTL text styles */
+.urdu-text {
+  font-family: "Noto Sans Devanagari", serif;
+  direction: ltr;
+  text-align: left;
+  line-height: 2.0;
+  letter-spacing: 0;
+}
+
+.script-font {
+  font-family: "Great Vibes", "Parisienne", cursive;
+}
+
+.playfair-font {
+  font-family: "PlayfairDisplay", serif;
+}
+
+/* Page transition */
+.page-enter {
+  animation: pageEnter 0.7s ease forwards;
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Floating hearts animation */
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateY(-50vh) rotate(15deg) scale(1.1);
+  }
+  100% {
+    transform: translateY(-110vh) rotate(-10deg) scale(0.8);
+    opacity: 0;
+  }
+}
+
+.floating-heart {
+  position: absolute;
+  animation: floatUp linear infinite;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Heart pulse */
+@keyframes heartPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 20px oklch(0.55 0.18 12 / 0.6));
+  }
+  50% {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 40px oklch(0.55 0.18 12 / 0.9));
+  }
+}
+
+.heart-pulse {
+  animation: heartPulse 2s ease-in-out infinite;
+}
+
+/* Polaroid photos */
+.polaroid {
+  background: white;
+  padding: 10px 10px 30px;
+  box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.polaroid:hover {
+  /* stylelint-disable-next-line declaration-no-important */
+  transform: translateY(-6px) scale(1.03) !important;
+  box-shadow: 6px 8px 25px rgba(0, 0, 0, 0.45);
+  z-index: 20;
+}
+
+/* Card hover effect */
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(110, 15, 34, 0.2);
+}
+
+/* Wine gradient background */
+.wine-bg {
+  background: linear-gradient(
+    135deg,
+    oklch(0.22 0.12 15),
+    oklch(0.28 0.14 15) 50%,
+    oklch(0.2 0.1 18)
+  );
+}
+
+/* Cream paper background */
+.cream-bg {
+  background: linear-gradient(
+    160deg,
+    oklch(0.98 0.018 85),
+    oklch(0.95 0.025 80)
+  );
+}
+
+/* Gold text */
+.gold-text {
+  background: linear-gradient(
+    135deg,
+    oklch(0.65 0.14 75),
+    oklch(0.88 0.1 85),
+    oklch(0.72 0.13 78)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* I LOVE U gradient */
+.love-gradient-text {
+  background: linear-gradient(
+    135deg,
+    oklch(0.4 0.2 15),
+    oklch(0.55 0.22 12),
+    oklch(0.45 0.18 18)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Rose gold gradient */
+.rose-gold-text {
+  background: linear-gradient(
+    135deg,
+    oklch(0.72 0.15 10),
+    oklch(0.82 0.12 20),
+    oklch(0.75 0.14 8)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Vignette overlay */
+.vignette {
+  box-shadow: inset 0 0 80px rgba(110, 15, 34, 0.45);
+}
+
+/* Scrollable letter content */
+.letter-scroll {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: oklch(0.78 0.12 80) transparent;
+}
+
+.letter-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.letter-scroll::-webkit-scrollbar-thumb {
+  background: oklch(0.78 0.12 80);
+  border-radius: 4px;
+}
+
+/* Nav button styles */
+.nav-btn {
+  font-family: "Noto Sans Devanagari", serif;
+  border: 1.5px solid oklch(0.78 0.12 80 / 0.5);
+  color: oklch(0.78 0.12 80);
+  background: transparent;
+  padding: 10px 28px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 15px;
+}
+
+.nav-btn:hover {
+  background: oklch(0.78 0.12 80 / 0.15);
+  border-color: oklch(0.78 0.12 80);
+  transform: scale(1.04);
+}
+
+.nav-btn-cream {
+  font-family: "Noto Sans Devanagari", serif;
+  border: 1.5px solid oklch(0.3 0.1 15 / 0.4);
+  color: oklch(0.28 0.1 15);
+  background: transparent;
+  padding: 10px 28px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 15px;
+}
+
+.nav-btn-cream:hover {
+  background: oklch(0.28 0.1 15 / 0.08);
+  border-color: oklch(0.28 0.1 15);
+  transform: scale(1.04);
+}
+
+@media (max-width: 640px) {
+  .urdu-text {
+    line-height: 2;
+  }
+
+  .polaroid {
+    padding: 6px 6px 20px;
+  }
+}
